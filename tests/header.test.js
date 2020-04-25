@@ -33,22 +33,6 @@ it("has a button that kicks user into OAuth flow", async () => {
 it("shows logout button when user is signed in", async () => {
   const id = "5e9f2275c27cfb3990caafbd";
 
-  const Buffer = require("safe-buffer").Buffer;
-  const sessionObject = {
-    passport: {
-      user: id
-    }
-  };
-
-  const sessionString = Buffer.from(JSON.stringify(sessionObject)).toString(
-    "base64"
-  );
-
-  const Keygrip = require("keygrip");
-  const keys = require("../config/keys");
-  const keygrip = new Keygrip([keys.cookieKey]);
-  const sig = keygrip.sign("session=" + sessionString);
-
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: sig });
   await page.goto("localhost:3000");
