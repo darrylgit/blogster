@@ -1,5 +1,3 @@
-const sessionFactory = require("./factories/sessionFactory");
-const userFactory = require("./factories/userFactory");
 const Page = require("./helpers/page");
 
 // Set-up / Take-down
@@ -30,13 +28,7 @@ it("has a button that kicks user into OAuth flow", async () => {
 });
 
 it("shows logout button when user is signed in", async () => {
-  const user = await userFactory();
-  const { session, sig } = sessionFactory(user);
-
-  await page.setCookie({ name: "session", value: session });
-  await page.setCookie({ name: "session.sig", value: sig });
-  await page.goto("localhost:3000");
-  await page.waitFor('a[href="/auth/logout"]');
+  await page.login();
 
   const text = await page.$eval('a[href="/auth/logout"]', el => el.innerHTML);
 
