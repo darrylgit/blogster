@@ -20,3 +20,5 @@ class CustomPage {
     this.page = page;
   }
 }
+
+module.exports = CustomPage;
