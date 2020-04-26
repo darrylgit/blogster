@@ -14,7 +14,7 @@ afterEach(async () => {
 
 // Actual tests
 it("displays header with correct text", async () => {
-  const text = await page.$eval("a.brand-logo", el => el.innerHTML);
+  const text = await page.getContentsOf("a.brand-logo");
 
   expect(text).toEqual("Blogster");
 });
