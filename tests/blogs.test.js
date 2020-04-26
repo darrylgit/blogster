@@ -22,6 +22,22 @@ describe("When logged in", async () => {
     expect(label).toEqual("Blog Title");
   });
 
+  describe("... and using valid inputs,", async () => {
+    beforeEach(async () => {
+      await page.type(".title input", "My title");
+      await page.type(".content input", "My content");
+      await page.click("form button");
+    });
+
+    test("takes user to review screen on submit", async () => {
+      const text = await page.getContentsOf("h5");
+
+      expect(text).toEqual("Please confirm your entries");
+    });
+
+    test("shows new blog post on index page", async () => {});
+  });
+
   describe("... and using invalid inputs,", async () => {
     beforeEach(async () => {
       await page.click("form button");
