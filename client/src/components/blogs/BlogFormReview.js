@@ -63,7 +63,7 @@ class BlogFormReview extends Component {
         <input
           onChange={this.onFileChange.bind(this)}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/jpg,image/png"
         />
 
         {this.renderButtons()}
