@@ -15,6 +15,7 @@ class BlogShow extends Component {
             "https://blogster-bucket-djw.s3.us-east-2.amazonaws.com/" +
             this.props.blog.imageUrl
           }
+          alt="user-uploaded"
         />
       );
     }
